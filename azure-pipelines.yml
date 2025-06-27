@@ -7,7 +7,7 @@ variables:
   ACR_NAME: NkDemoProjectacr09
   IMAGE_NAME: hello-aks
   RESOURCE_GROUP: NkDemoProjectRG
-  CLUSTER_NAME: NkDemoProjectAks
+  CLUSTER_NAME: NkDemoProject-aks-cluster
   NAMESPACE: dev
 
 stages:
