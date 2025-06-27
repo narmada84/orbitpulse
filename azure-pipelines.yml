@@ -39,7 +39,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Apply manifests to AKS'
       inputs:
-        azureSubscription: '<your-service-connection-name>'
+        azureSubscription: 'AzureSP-Devops'
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
