@@ -1,0 +1,43 @@
+name: Build and Deploy to AKS
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  ACR_NAME: nkdemoprojectacr09
+  IMAGE_NAME: hello-aks
+  RESOURCE_GROUP: NkDemoProjectRG
+  CLUSTER_NAME: NkDemoProjectAks
+  NAMESPACE: dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Login to ACR
+      run: az acr login --name $ACR_NAME
+
+    - name: Build and Push Docker image
+      run: |
+        docker build -t $ACR_NAME.azurecr.io/$IMAGE_NAME:v1 .
+        docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:v1
+
+    - name: Set AKS credentials
+      run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --overwrite-existing
+
+    - name: Deploy to AKS
+      run: |
+        kubectl apply -f deployment.yaml -n $NAMESPACE
+        kubectl apply -f service.yaml -n $NAMESPACE
+        kubectl apply -f ingress.yaml -n $NAMESPACE
