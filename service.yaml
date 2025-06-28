@@ -4,6 +4,7 @@ metadata:
   name: orbitpulse-svc
   namespace: dev
 spec:
+  type: LoadBalancer
   selector:
     app: orbitpulse
   ports:
