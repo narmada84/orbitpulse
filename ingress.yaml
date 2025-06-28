@@ -20,4 +20,4 @@ spec:
           service:
             name: orbitpulse-svc
             port:
-              number: 443
+              number: 80
