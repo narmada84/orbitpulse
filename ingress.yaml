@@ -8,7 +8,7 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - demo.local
+    - dev.demo.local
     secretName: tls-secret
   rules:
   - host: dev.demo.local
