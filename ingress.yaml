@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - dev.demo.local
-    secretName: tls-secret
+    secretName: dev-demo-tls
   rules:
   - host: dev.demo.local
     http:
