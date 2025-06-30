@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: orbitpulse
-        image: NkDemoProjectacr09.azurecr.io/hello-aks:v1
+        image: NkDemoProjectacr09.azurecr.io/hello-aks:latest
         ports:
         - containerPort: 80
